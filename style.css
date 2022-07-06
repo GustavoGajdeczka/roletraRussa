@@ -1,0 +1,60 @@
+body{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: #c7ecd6 !important;
+}
+
+.main{
+  width: 400px;
+  height: 600px;
+  display: flex;
+  border-radius: 10px;
+  background-color: #aae9c3;
+}
+
+h1{
+  text-align: center;
+}
+
+.row{
+  margin-top: 10px !important;
+}
+
+.card{
+  width: 50px;
+  height: 60px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+	font-size: 1.5em;
+  color: rgb(49, 75, 63);
+  margin: 10px;
+  margin-top: 20px;
+  background-color: rgba(36, 70, 50, 0.808) !important;
+}
+
+.cardCerto{
+  background-color: rgba(29, 247, 0, 0.753) !important;
+}
+
+.cardMeioCerto{
+  background-color: rgba(253, 173, 0, 0.61) !important;
+}
+
+.cardErrado{
+  background-color: rgba(250, 0, 0, 0.61) !important;
+}
+
+.linhaSelecionada{
+  background-color: rgba(217, 255, 0, 0.39) !important;
+}
+
+.cardSelecionado{
+  background-color: rgb(217, 255, 0) !important;
+}
