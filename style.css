@@ -58,3 +58,12 @@ h1{
 .cardSelecionado{
   background-color: rgb(217, 255, 0) !important;
 }
+
+footer {
+  position: fixed;
+  height: 20px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+}
