@@ -8,6 +8,7 @@ const data = {
   frase: '',
   linhaAtual: 0,
   colunaAtual: 0,
+  final: false
 }
 
 window.onload = () => {
@@ -20,45 +21,52 @@ window.onload = () => {
   selecionarLinha(data.numeroLinha);
 
   document.addEventListener ('keydown', (event) => {
-    const keyName = event.key;
-    var cardSelecionado = document.getElementsByClassName("cardSelecionado");
-    if(cardSelecionado.length != 0){
-      data.colunaAtual = cardSelecionado.item(0).id.substr(-1)
-      data.linhaAtual = cardSelecionado.item(0).id.substr(-2, 1)   
-    }else{
-      cardSelecionado = document.getElementById("card-" + data.linhaAtual + data.colunaAtual)
-      console.log("cardSelecionado", cardSelecionado, data.linhaAtual, data.colunaAtual);
-      cardSelecionado.classList.add("cardSelecionado");
-      cardSelecionado = document.getElementsByClassName("cardSelecionado");
-    }
-    if(event.code == "ArrowUp" || event.code == "ArrowLeft"){
-      if(data.colunaAtual > 0){
-        selecionarCard(data.linhaAtual, parseInt(data.colunaAtual)-1);
+    if(data.final == false){
+      const keyName = event.key;
+      var cardSelecionado = document.getElementsByClassName("cardSelecionado");
+      if(cardSelecionado.length != 0){
+        data.colunaAtual = cardSelecionado.item(0).id.substr(-1)
+        data.linhaAtual = cardSelecionado.item(0).id.substr(-2, 1)   
+      }else{
+        cardSelecionado = document.getElementById("card-" + data.linhaAtual + data.colunaAtual)
+        cardSelecionado.classList.add("cardSelecionado");
+        cardSelecionado = document.getElementsByClassName("cardSelecionado");
       }
-    }
-    if(event.code == "Enter" && data.colunaAtual == 4){
-      verificarFrase(data.linhaAtual);
-      data.numeroLinha++;
-      selecionarLinha(parseInt(data.linhaAtual) + 1)
-      data.linhaAtual = parseInt(data.linhaAtual) + 1;
-      data.colunaAtual = 0;
-    }
-    if(event.code == "ArrowDown" || event.code == "ArrowRight"){
-      if(data.colunaAtual < coluna -1){
-        selecionarCard(data.linhaAtual, parseInt(data.colunaAtual)+1);
+      if(event.code == "ArrowUp" || event.code == "ArrowLeft"){
+        if(data.colunaAtual > 0){
+          selecionarCard(data.linhaAtual, parseInt(data.colunaAtual)-1);
+        }
       }
-    }
-
-    if(event.code == 'Delete' || event.code == 'Backspace'){
-      cardSelecionado.item(0).innerHTML = '';
-      if(data.colunaAtual > 0){
-        selecionarCard(data.linhaAtual, parseInt(data.colunaAtual)-1);
+      if(event.code == "Enter" && data.colunaAtual == 4){
+        if(parseInt(data.linhaAtual)+1 == linha){
+          if(!verificarFrase(data.linhaAtual)){
+            alert("Você não acertou a Frase! '" + data.frase + "'");
+  
+          }
+        }
+        verificarFrase(data.linhaAtual);
+        data.numeroLinha++;
+        selecionarLinha(parseInt(data.linhaAtual) + 1)
+        data.linhaAtual = parseInt(data.linhaAtual) + 1;
+        data.colunaAtual = 0;
       }
-    }else{
-      if(event.keyCode > 64 && event.keyCode < 91){
-        cardSelecionado.item(0).innerHTML = keyName;
+      if(event.code == "ArrowDown" || event.code == "ArrowRight"){
         if(data.colunaAtual < coluna -1){
           selecionarCard(data.linhaAtual, parseInt(data.colunaAtual)+1);
+        }
+      }
+  
+      if(event.code == 'Delete' || event.code == 'Backspace'){
+        cardSelecionado.item(0).innerHTML = '';
+        if(data.colunaAtual > 0){
+          selecionarCard(data.linhaAtual, parseInt(data.colunaAtual)-1);
+        }
+      }else{
+        if(event.keyCode > 64 && event.keyCode < 91){
+          cardSelecionado.item(0).innerHTML = keyName;
+          if(data.colunaAtual < coluna -1){
+            selecionarCard(data.linhaAtual, parseInt(data.colunaAtual)+1);
+          }
         }
       }
     }
@@ -81,7 +89,9 @@ const verificarFrase = (linha) => {
   }
   if(frase.length == count){
     alert("Parabens você acertou a palavra!!");
+    return true;
   }
+  return false;
 }
 
 const deselecionarCard = () => {
@@ -90,10 +100,12 @@ const deselecionarCard = () => {
 }
 
 const selecionarCard = (linha, coluna) => {
-  deselecionarCard();
-  if(linha == data.numeroLinha){
-    var card = document.getElementById(`card-${linha}${coluna}`)
-    card.classList.add("cardSelecionado");
+  if(data.final == false){
+    deselecionarCard();
+    if(linha == data.numeroLinha){
+      var card = document.getElementById(`card-${linha}${coluna}`)
+      card.classList.add("cardSelecionado");
+    }
   }
 }
 
