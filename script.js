@@ -88,7 +88,6 @@ const patriaMae = (frase, linha) => {
 }
 
 const ativaProtocoloSovietico = () => {
-  console.log("Here");
   document.getElementsByTagName("body").item(0).style.backgroundImage = "url(./bandeira.jpg)";
   document.getElementsByTagName("body").item(0).style.backgroundRepeat = "no-repeat";
   document.getElementsByTagName("body").item(0).style.backgroundSize = "cover";
