@@ -8,7 +8,8 @@ const data = {
   frase: '',
   linhaAtual: 0,
   colunaAtual: 0,
-  final: false
+  final: false,
+  myAudio: new Audio('./urss.mp3')
 }
 
 window.onload = () => {
@@ -73,8 +74,30 @@ window.onload = () => {
   });
 }
 
+const patriaMae = (frase, linha) => {
+  var fraseChave = 'ursal'.split("");
+  var count = 0;
+  for (let index = 0; index < fraseChave.length; index++) {
+    if(frase[index] == fraseChave[index]){
+      count++
+    }
+  }
+  if(count == fraseChave.length){
+    ativaProtocoloSovietico();
+  }
+}
+
+const ativaProtocoloSovietico = () => {
+  console.log("Here");
+  document.getElementsByTagName("body").item(0).style.backgroundImage = "url(./bandeira.jpg)";
+  document.getElementsByTagName("body").item(0).style.backgroundRepeat = "no-repeat";
+  document.getElementsByTagName("body").item(0).style.backgroundSize = "cover";
+  data.myAudio.play();
+}
+
 const verificarFrase = (linha) => {
   var frase = Array.from(document.getElementById('linha-' + linha).childNodes).map((el) => { return el.outerText});
+  patriaMae(frase, linha);
   var fraseData = data.frase.split("")
   var count = 0;
   for (let index = 0; index < frase.length; index++) {
@@ -89,6 +112,8 @@ const verificarFrase = (linha) => {
   }
   if(frase.length == count){
     alert("Parabens você acertou a palavra!!");
+    data.final = true;
+    deselecionarCard();
     return true;
   }
   return false;
