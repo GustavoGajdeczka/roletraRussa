@@ -17,6 +17,7 @@ window.onload = () => {
   const coluna = 5;
   montarGrid(linha, coluna);
   obterFrases();
+  detectMobile();
 
   data.numeroLinha = 0;
   selecionarLinha(data.numeroLinha);
@@ -91,6 +92,7 @@ const ativaProtocoloSovietico = () => {
   document.getElementsByTagName("body").item(0).style.backgroundImage = "url(./bandeira.jpg)";
   document.getElementsByTagName("body").item(0).style.backgroundRepeat = "no-repeat";
   document.getElementsByTagName("body").item(0).style.backgroundSize = "cover";
+  document.getElementsByTagName("body").item(0).style.zIndex = "5";
   data.myAudio.play();
 }
 
@@ -160,9 +162,24 @@ const montarGrid = (linha, coluna) => {
     }
     toInner += '</div>'
   }
-  container.innerHTML = toInner
+  container.innerHTML = toInner + container.innerHTML
 }
 
 const restartPage = () => {
   window.location.reload()
+}
+
+const detectMobile = () => {
+  if( navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/webOS/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+  || navigator.userAgent.match(/iPod/i)
+  || navigator.userAgent.match(/BlackBerry/i)
+  || navigator.userAgent.match(/Windows Phone/i)){
+    document.getElementsByClassName("main").item(0).classList.add("mobile");
+    return true;
+  }else{
+    return false;
+  }
 }

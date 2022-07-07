@@ -8,13 +8,51 @@ body{
   background: #c7ecd6;
 }
 
+.animatedBackground{
+  animation:slide 25s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, rgb(150, 99, 209) 50%, #09f 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-10;
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:15s;
+  z-index:-10;
+}
+
+.bg3 {
+  animation-duration:20s;
+  background-image: linear-gradient(-50deg, rgb(121, 209, 99) 50%, rgb(156, 104, 223) 50%);
+  z-index:-10;
+}
+
+
+
 .main{
   width: 40vw;
   height: 80vh;
   display: flex;
-  border-radius: 10px;
-  background-color: #aae9c3;
+  /* border-radius: 10px; */
+  background-color: #27ee7770;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.9px);
+  -webkit-backdrop-filter: blur(7.9px);
+  border: 1px solid rgba(20, 182, 101, 0.45);
+  z-index:10;
 }
+
+.mobile{
+  width: 80vw;
+  height: 80vh;
+}
+
 
 h1{
   text-align: center;
@@ -25,18 +63,24 @@ h1{
 }
 
 .card{
-  width: 50px;
-  height: 60px;
-  border-radius: 10px;
+  width: 12vw;
+  height: 10vh;
+  border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-	font-size: 1.5em;
+	font-size: 3em;
+  font-weight: bold;
   color: rgb(49, 75, 63);
   margin: 10px;
   margin-top: 20px;
   background-color: rgba(36, 70, 50, 0.808) !important;
+}
+
+.mobile .card{
+  height: 10vh !important;
+  font-size: 6em;
 }
 
 .cardCerto{
@@ -66,4 +110,17 @@ footer {
   left: 0px;
   right: 0px;
   margin-bottom: 0px;
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(-50%);
+    transform:translateY(-50%);
+    transform: rotate(0deg);
+  }
+  100% {
+    transform:translateX(50%);
+    transform:translateY(50%);
+    transform: rotate(90deg);
+  }
 }
