@@ -9,29 +9,30 @@ body{
 }
 
 .animatedBackground{
-  animation:slide 25s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, rgb(150, 99, 209) 50%, #09f 50%);
-  bottom:0;
-  left:-50%;
-  opacity:.5;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(45deg, #20ff20, #2020ff, #ff2020, #404040);
+  background-size: 300% 300%;
+  animation: colorGradient 15s ease infinite;
+  z-index:-10;
   position:fixed;
-  right:-50%;
-  top:0;
-  z-index:-10;
 }
 
-.bg2 {
-  animation-direction:alternate-reverse;
-  animation-duration:15s;
-  z-index:-10;
+@keyframes colorGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.bg3 {
-  animation-duration:20s;
-  background-image: linear-gradient(-50deg, rgb(121, 209, 99) 50%, rgb(156, 104, 223) 50%);
-  z-index:-10;
+h1 {
+  -webkit-text-stroke: 1px rgb(233, 153, 14);
 }
-
 
 
 .main{
@@ -110,17 +111,4 @@ footer {
   left: 0px;
   right: 0px;
   margin-bottom: 0px;
-}
-
-@keyframes slide {
-  0% {
-    transform:translateX(-50%);
-    transform:translateY(-50%);
-    transform: rotate(0deg);
-  }
-  100% {
-    transform:translateX(50%);
-    transform:translateY(50%);
-    transform: rotate(90deg);
-  }
 }
