@@ -112,3 +112,10 @@ footer {
   right: 0px;
   margin-bottom: 0px;
 }
+
+.seletorIdioma{
+  margin: 0;
+  top:0px;
+  right: 0px;
+  position: fixed;
+}
