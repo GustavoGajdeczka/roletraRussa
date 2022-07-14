@@ -119,3 +119,16 @@ footer {
   right: 0px;
   position: fixed;
 }
+
+.iconBR{
+  background: url(flags/br.png);
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+.iconDE{
+  background: url(flags/de.png);
+  float: left;
+  width: 16px;
+  height: 16px;
+}

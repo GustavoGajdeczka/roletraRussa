@@ -1,5 +1,5 @@
-const obterFrases = async () => {
-  const response = await fetch("./frase.json").then(response => response.json())
+const obterFrases = async (language) => {
+  const response = await fetch(`./frases/${language}.json`).then(response => response.json())
   const random = Math.floor(Math.random() * response.frases.length)
   data.frase = response.frases[random]
 }
@@ -16,7 +16,7 @@ window.onload = () => {
   const linha = 5;
   const coluna = 5;
   montarGrid(linha, coluna);
-  obterFrases();
+  obterFrases(getCookie('language'));
   detectMobile();
 
   data.numeroLinha = 0;
@@ -74,6 +74,20 @@ window.onload = () => {
     }
   });
 }
+
+const changeLanguage = (idioma) => {
+  setCookie('language', idioma);
+  restartPage();
+}
+
+const setCookie = (name, value) => {
+  document.cookie = `${name}=${value}`
+}
+const getCookie = (name) => {
+  let value = `; ${document.cookie}`;
+  let partes = value.split(`; ${name}=`);
+  if(partes.length == 2) return partes.pop().split(';').shift();
+} 
 
 const patriaMae = (frase, linha) => {
   var fraseChave = 'ursal'.split("");
